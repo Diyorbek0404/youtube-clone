@@ -18,6 +18,13 @@ class VideoController {
         }
         return next(ApiError.badRequest("Post topilmadi yoki xato"))
     }
+    async getAll(req, res, next){
+        const post = await Video.find()
+        if(post) {
+            return res.status(200).json(post)
+        }
+        return next(ApiError.badRequest("Postlar topilmadi yoki xato"))
+    }
 }
 
 export default new VideoController
