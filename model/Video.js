@@ -23,7 +23,8 @@ const VideoSchema = new mongoose.Schema({
     comments:[{
         userId:String,
         username:String,
-        text:String
+        text:String,
+        image:String
     }],
     channelImage:{
         type:String,
