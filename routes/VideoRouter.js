@@ -11,5 +11,6 @@ router.put("/:id", VideoController.updateVideo)
 router.delete("/:id", VideoController.delete)
 router.post("/", VideoController.addComment)
 router.get("/:id/comments", VideoController.getTwoComments)
+router.get("/", VideoController.getAll)
 
 export default router

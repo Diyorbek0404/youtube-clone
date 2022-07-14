@@ -18,7 +18,8 @@ class VideoController {
         }
         return next(ApiError.badRequest("Post topilmadi yoki xato"))
     }
-    async getAll(res, next){
+
+    async getAll(req, res, next){
         const post = await Video.find()
         if(post) {
             return res.status(200).json(post)
