@@ -24,7 +24,7 @@ class UserController {
         return res.send({user, token})
     }
 
-    async login(req, res) {
+    async login(req, res, next) {
         const { email, password } = req.body
         const user = await User.findOne({ email: email })
         if (!user) {
