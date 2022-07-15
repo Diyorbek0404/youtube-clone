@@ -21,7 +21,7 @@ class UserController {
         const hashPassword = await bcrypt.hash(password, 8)
         const user = await User.create({ email, username, role, password: hashPassword })
         const token = generateJwt(user.id, user.email, user.username, user.role)
-        return res.send({token})
+        return res.send({user, token})
     }
 
     async login(req, res) {
@@ -35,7 +35,7 @@ class UserController {
             return next(ApiError.badRequest("Parol xato"))
         }
         const token = generateJwt(user.id, user.email, user.username, user.role)
-        return res.send({token})
+        return res.send({token, user})
     }
 
     async check(req, res, next) {
