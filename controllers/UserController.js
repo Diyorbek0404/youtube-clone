@@ -24,13 +24,12 @@ class UserController {
         return res.send({user, token})
     }
 
-    async login(req, res, next) {
-        const { email, password } = req.body
-        const user = await User.findOne({ email: email })
+     async login(req, res, next) {
+        const user = await User.findOne({ email: req.body.email })
         if (!user) {
             return next(ApiError.internal("bunday foydalanuvchi topilmadi"))
         }
-        let comparePassword = await bcrypt.compare(password, user.password)
+        let comparePassword = await bcrypt.compare(req.body.password, user.password)
         if (!comparePassword) {
             return next(ApiError.badRequest("Parol xato"))
         }
